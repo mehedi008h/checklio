@@ -1,17 +1,27 @@
 import { View, Text, SafeAreaView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Icon from "@expo/vector-icons/Fontisto";
 import Animated, {
     FadeInDown,
     FadeOutDown,
     LinearTransition,
-    ZoomIn,
-    ZoomOut,
 } from "react-native-reanimated";
 import NoiseBackground from "@/components/common/NoiseBackground";
 import CustomSafeareaView from "@/components/common/CustomSafeAreaView";
+import { useRouter } from "expo-router";
 
 const SplashScreen = () => {
+    const router = useRouter();
+    const navigateTOHome = () => {
+        router.navigate("/(tabs)");
+    };
+
+    useEffect(() => {
+        const timeoutId = setTimeout(navigateTOHome, 1200);
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    });
     return (
         <CustomSafeareaView backgroundColor="transparent">
             <NoiseBackground />
