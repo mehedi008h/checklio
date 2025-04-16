@@ -1,13 +1,9 @@
-import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
+
 import CustomSafeareaView from "@/components/common/CustomSafeAreaView";
-import { LinearGradient } from "expo-linear-gradient";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { BlurView } from "expo-blur";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import Calendar from "@/components/common/Calendar";
 import HomeHeader from "@/components/home/HomeHeader";
+import RecentTasks from "@/components/home/RecentTasks";
+
 const HomeScreen = () => {
     return (
         <CustomSafeareaView
@@ -15,6 +11,7 @@ const HomeScreen = () => {
             barStyle="light-content"
         >
             <HomeHeader />
+            <RecentTasks />
         </CustomSafeareaView>
     );
 };
