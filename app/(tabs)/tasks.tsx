@@ -1,11 +1,17 @@
-import { View, Text } from "react-native";
 import React from "react";
+import TaskHeader from "@/components/tasks/TaskHeader";
+import RecentTasks from "@/components/home/RecentTasks";
+import CustomSafeareaView from "@/components/common/CustomSafeAreaView";
 
 const TasksScreen = () => {
     return (
-        <View>
-            <Text>ExploreScreen</Text>
-        </View>
+        <CustomSafeareaView
+            backgroundColor="transparent"
+            barStyle="light-content"
+        >
+            <TaskHeader />
+            <RecentTasks />
+        </CustomSafeareaView>
     );
 };
 

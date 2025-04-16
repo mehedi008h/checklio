@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, Text, View } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Colors } from "@/constants/Colors";
@@ -44,9 +44,34 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="tasks"
                 options={{
-                    title: "Tasks",
+                    tabBarLabel: "Tasks",
                     tabBarIcon: ({ color }) => (
                         <Entypo name="list" size={24} color="black" />
+                    ),
+                    headerShown: true,
+                    headerTransparent: true,
+                    headerTitle: "",
+                    headerStyle: {
+                        backgroundColor: "transparent",
+                    },
+                    headerLeft: () => (
+                        <View className="pl-4">
+                            <Text className="text-neutral-300 font-okra_700 text-xl font-bold">
+                                My Tasks
+                            </Text>
+                            <Text className="text-base font-okra_300 text-neutral-400">
+                                {new Date().toString().slice(0, 15)}
+                            </Text>
+                        </View>
+                    ),
+                    headerRight: () => (
+                        <View className="pr-4">
+                            <Entypo
+                                name="dots-three-vertical"
+                                size={20}
+                                color="#d4d4d4"
+                            />
+                        </View>
                     ),
                 }}
             />
