@@ -9,15 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import {
-    useFonts,
-    Barlow_300Light,
-    Barlow_400Regular,
-    Barlow_500Medium,
-    Barlow_600SemiBold,
-    Barlow_700Bold,
-    Barlow_900Black,
-} from "@expo-google-fonts/barlow";
+import { useFonts } from "expo-font";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
@@ -27,12 +19,11 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
     const colorScheme = useColorScheme();
     const [loaded] = useFonts({
-        Barlow_300Light: Barlow_300Light,
-        Barlow_400Regular: Barlow_400Regular,
-        Barlow_500Medium: Barlow_500Medium,
-        Barlow_600SemiBold: Barlow_600SemiBold,
-        Barlow_700Bold: Barlow_700Bold,
-        Barlow_900Black: Barlow_900Black,
+        Okra_300Light: require("../assets/fonts/Okra-MediumLight.ttf"),
+        Okra_400Regular: require("../assets/fonts/Okra-Regular.ttf"),
+        Okra_500Medium: require("../assets/fonts/Okra-Medium.ttf"),
+        Okra_700SemiBold: require("../assets/fonts/Okra-Bold.ttf"),
+        Okra_900Black: require("../assets/fonts/Okra-ExtraBold.ttf"),
     });
 
     useEffect(() => {

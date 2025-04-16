@@ -9,12 +9,11 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                barlow_300: "Barlow_300Light",
-                barlow_400: "Barlow_400Regular",
-                barlow_500: "Barlow_500Medium",
-                barlow_600: "Barlow_600SemiBold",
-                barlow_700: "Barlow_700Bold",
-                barlow_900: "Barlow_900Black",
+                okra_300: "Okra_300Light",
+                okra_400: "Okra_400Regular",
+                okra_500: "Okra_500Medium",
+                okra_700: "Okra_700Bold",
+                okra_900: "Okra_900Black",
             },
         },
     },
