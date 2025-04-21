@@ -1,16 +1,18 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import Task from "../tasks/Task";
 import { useRouter } from "expo-router";
+import Task from "../tasks/Task";
 
 const RecentTasks = () => {
     const router = useRouter();
+
     const navigateTOTasks = () => {
         router.navigate("/(tabs)/tasks");
     };
+
     return (
-        <View className="p-4 h-full bg-neutral-200">
+        <View className="p-4 h-full bg-neutral-100">
             {/* header  */}
             <View className="flex-row justify-between items-center mb-3">
                 <Text className="text-xl font-bold font-okra_700 text-neutral-700">
@@ -35,8 +37,6 @@ const RecentTasks = () => {
 
             <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
                 <Task />
-                <Task /> <Task /> <Task /> <Task /> <Task /> <Task />
-                <Task /> <Task /> <Task /> <Task /> <Task /> <Task />
             </ScrollView>
         </View>
     );

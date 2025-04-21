@@ -12,6 +12,7 @@ export default function TabLayout() {
     return (
         <Tabs
             screenOptions={{
+                tabBarHideOnKeyboard: true,
                 tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
                 headerShown: false,
                 tabBarStyle: Platform.select({
@@ -38,6 +39,22 @@ export default function TabLayout() {
                     title: "",
                     tabBarIcon: ({ color }) => (
                         <AntDesign name="pluscircleo" size={24} color="black" />
+                    ),
+                    headerShown: true,
+                    headerTransparent: true,
+                    headerTitle: "",
+                    headerStyle: {
+                        backgroundColor: "transparent",
+                    },
+                    headerLeft: () => (
+                        <View className="pl-4">
+                            <Text className="text-neutral-300 font-okra_700 text-xl font-bold">
+                                Add Your Task
+                            </Text>
+                            <Text className="text-base font-okra_300 text-neutral-400">
+                                Let's make your day more productive 😊
+                            </Text>
+                        </View>
                     ),
                 }}
             />
