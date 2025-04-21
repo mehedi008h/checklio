@@ -3,6 +3,7 @@ import React from "react";
 import { Platform, Text, View } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
@@ -89,6 +90,20 @@ export default function TabLayout() {
                                 color="#d4d4d4"
                             />
                         </View>
+                    ),
+                }}
+            />
+
+            <Tabs.Screen
+                name="profile"
+                options={{
+                    tabBarLabel: "Profile",
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome6
+                            name="circle-user"
+                            size={24}
+                            color="black"
+                        />
                     ),
                 }}
             />
