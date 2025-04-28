@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
@@ -14,7 +14,13 @@ const ProfileHeader = () => {
             className="w-full h-fit  px-4 py-10"
         >
             <View className="flex flex-row justify-between items-center">
-                <View className="h-12 w-12 rounded-full bg-neutral-500"></View>
+                <View className="h-14 w-14 rounded-full border-2 border-neutral-200 overflow-hidden">
+                    <Image
+                        source={require("../../assets/images/profile.jpg")}
+                        className=" w-full h-full rounded-full"
+                        resizeMode="stretch"
+                    />
+                </View>
                 <TouchableOpacity>
                     <BlurView
                         intensity={20}

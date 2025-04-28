@@ -8,9 +8,10 @@ const TasksScreen = () => {
         <CustomSafeareaView
             backgroundColor="transparent"
             barStyle="light-content"
+            classStyle="flex-1 bg-neutral-100"
         >
-            <TaskHeader />
-            <RecentTasks />
+            {/* <TaskHeader />
+            <RecentTasks /> */}
         </CustomSafeareaView>
     );
 };

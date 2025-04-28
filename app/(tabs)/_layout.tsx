@@ -1,10 +1,9 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 export default function TabLayout() {
@@ -14,23 +13,42 @@ export default function TabLayout() {
         <Tabs
             screenOptions={{
                 tabBarHideOnKeyboard: true,
-                tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+                tabBarActiveTintColor: "blue",
                 headerShown: false,
-                tabBarStyle: Platform.select({
-                    ios: {
-                        // Use a transparent background on iOS to show the blur effect
-                        position: "absolute",
-                    },
-                    default: {},
-                }),
+                tabBarStyle: {
+                    elevation: 0,
+                },
             }}
         >
             <Tabs.Screen
                 name="index"
                 options={{
                     title: "Home",
-                    tabBarIcon: ({ color }) => (
-                        <AntDesign name="home" size={24} color="black" />
+                    tabBarLabel: ({ focused }) => {
+                        return (
+                            <Text
+                                className={`${
+                                    focused
+                                        ? "text-teal-800"
+                                        : "text-neutral-600"
+                                } font-okra_400 text-sm font-normal`}
+                            >
+                                Home
+                            </Text>
+                        );
+                    },
+                    headerShown: true,
+                    headerTransparent: true,
+                    headerTitle: "",
+                    headerStyle: {
+                        backgroundColor: "transparent",
+                    },
+                    tabBarIcon: ({ focused }) => (
+                        <AntDesign
+                            name="home"
+                            size={24}
+                            color={focused ? "#115e59" : "#525252"}
+                        />
                     ),
                 }}
             />
@@ -38,8 +56,12 @@ export default function TabLayout() {
                 name="addTask"
                 options={{
                     title: "",
-                    tabBarIcon: ({ color }) => (
-                        <AntDesign name="pluscircleo" size={24} color="black" />
+                    tabBarIcon: ({ focused }) => (
+                        <AntDesign
+                            name="pluscircleo"
+                            size={24}
+                            color={focused ? "#115e59" : "#525252"}
+                        />
                     ),
                     headerShown: true,
                     headerTransparent: true,
@@ -62,9 +84,25 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="tasks"
                 options={{
-                    tabBarLabel: "Tasks",
-                    tabBarIcon: ({ color }) => (
-                        <Entypo name="list" size={24} color="black" />
+                    tabBarLabel: ({ focused }) => {
+                        return (
+                            <Text
+                                className={`${
+                                    focused
+                                        ? "text-teal-800"
+                                        : "text-neutral-600"
+                                } font-okra_400 text-sm font-normal`}
+                            >
+                                Tasks
+                            </Text>
+                        );
+                    },
+                    tabBarIcon: ({ focused }) => (
+                        <Entypo
+                            name="list"
+                            size={20}
+                            color={focused ? "#115e59" : "#525252"}
+                        />
                     ),
                     headerShown: true,
                     headerTransparent: true,
@@ -97,12 +135,25 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="profile"
                 options={{
-                    tabBarLabel: "Profile",
-                    tabBarIcon: ({ color }) => (
+                    tabBarLabel: ({ focused }) => {
+                        return (
+                            <Text
+                                className={`${
+                                    focused
+                                        ? "text-teal-800"
+                                        : "text-neutral-600"
+                                } font-okra_400 text-sm font-normal`}
+                            >
+                                Profile
+                            </Text>
+                        );
+                    },
+
+                    tabBarIcon: ({ focused }) => (
                         <FontAwesome6
                             name="circle-user"
-                            size={24}
-                            color="black"
+                            size={20}
+                            color={focused ? "#115e59" : "#525252"}
                         />
                     ),
                 }}

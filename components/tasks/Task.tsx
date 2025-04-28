@@ -2,9 +2,13 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { BlurView } from "expo-blur";
 
-const Task = () => {
+interface TaskProps {
+    onPress?: () => void;
+}
+
+const Task = ({ onPress }: TaskProps) => {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
             <BlurView
                 intensity={20}
                 tint="dark"
