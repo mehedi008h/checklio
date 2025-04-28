@@ -1,13 +1,19 @@
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { BlurView } from "expo-blur";
 
 export default function TabLayout() {
     const colorScheme = useColorScheme();
+    const router = useRouter();
+
+    const handlePress = () => {
+        router.push("/addTask");
+    };
 
     return (
         <Tabs
@@ -52,35 +58,7 @@ export default function TabLayout() {
                     ),
                 }}
             />
-            <Tabs.Screen
-                name="addTask"
-                options={{
-                    title: "",
-                    tabBarIcon: ({ focused }) => (
-                        <AntDesign
-                            name="pluscircleo"
-                            size={24}
-                            color={focused ? "#115e59" : "#525252"}
-                        />
-                    ),
-                    headerShown: true,
-                    headerTransparent: true,
-                    headerTitle: "",
-                    headerStyle: {
-                        backgroundColor: "transparent",
-                    },
-                    headerLeft: () => (
-                        <View className="pl-4">
-                            <Text className="text-neutral-300 font-okra_700 text-xl font-bold">
-                                Add Your Task
-                            </Text>
-                            <Text className="text-base font-okra_300 text-neutral-400">
-                                Let's make your day more productive 😊
-                            </Text>
-                        </View>
-                    ),
-                }}
-            />
+
             <Tabs.Screen
                 name="tasks"
                 options={{
@@ -121,13 +99,21 @@ export default function TabLayout() {
                         </View>
                     ),
                     headerRight: () => (
-                        <View className="pr-4">
-                            <Entypo
-                                name="dots-three-vertical"
-                                size={20}
-                                color="#d4d4d4"
-                            />
-                        </View>
+                        <TouchableOpacity
+                            onPress={handlePress}
+                            className="pr-4"
+                        >
+                            <BlurView
+                                intensity={20}
+                                className="w-12 h-12 rounded-full justify-center items-center overflow-hidden "
+                            >
+                                <AntDesign
+                                    name="pluscircleo"
+                                    size={24}
+                                    color="#fff"
+                                />
+                            </BlurView>
+                        </TouchableOpacity>
                     ),
                 }}
             />
@@ -161,3 +147,6 @@ export default function TabLayout() {
         </Tabs>
     );
 }
+
+// #2f82bd
+// #43a1d4

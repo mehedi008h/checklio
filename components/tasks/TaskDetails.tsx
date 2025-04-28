@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { BlurView } from "expo-blur";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -9,8 +9,11 @@ import Animated, {
     FadeOutDown,
     LinearTransition,
 } from "react-native-reanimated";
+import { LinearGradient } from "expo-linear-gradient";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const TaskDetails = () => {
+    const [openModal, setOpenModal] = useState<boolean>(false);
     return (
         <View className="relative flex-1">
             <View className="h-20 w-20 bg-neutral-100 rounded-md absolute -top-10 left-5">
@@ -96,7 +99,10 @@ const TaskDetails = () => {
                     className="flex-1 py-3 flex-row justify-evenly items-center gap-2 px-4 bg-neutral-400"
                 >
                     {/* delete task  */}
-                    <TouchableOpacity className="h-12 w-12 justify-center items-center bg-red-900 rounded-full">
+                    <TouchableOpacity
+                        onPress={() => setOpenModal(true)}
+                        className="h-12 w-12 justify-center items-center bg-red-900 rounded-full"
+                    >
                         <AntDesign name="delete" size={20} color="white" />
                     </TouchableOpacity>
 
@@ -117,6 +123,57 @@ const TaskDetails = () => {
                     </TouchableOpacity>
                 </BlurView>
             </Animated.View>
+
+            {openModal && (
+                <Animated.View
+                    entering={FadeInDown.duration(400).delay(150)}
+                    exiting={FadeOutDown.duration(400).delay(150)}
+                    layout={LinearTransition.duration(400)}
+                    className="absolute bottom-0 right-0 left-0 top-[75%] bg-neutral-300 rounded-t-xl p-4"
+                >
+                    <View className="flex-col items-center justify-between gap-3">
+                        <Ionicons
+                            name="information-circle"
+                            size={50}
+                            color="#991b1b"
+                        />
+                        <Text className="text-base font-okra_500 text-neutral-800">
+                            Are you sure you want to delete this task?
+                        </Text>
+                    </View>
+                    <View className="flex-row bg-ne items-center justify-between gap-2 absolute bottom-4 left-4 right-4">
+                        <TouchableOpacity
+                            onPress={() => setOpenModal(false)}
+                            className="flex-1"
+                        >
+                            <LinearGradient
+                                // Button Linear Gradient
+                                colors={["#a3a3a3", "#737373"]}
+                                start={[0, 0]}
+                                end={[0, 1]}
+                                className="w-full h-12 rounded-md justify-center items-center mt-4 overflow-hidden"
+                            >
+                                <Text className="text-white font-okra_500">
+                                    Cancle
+                                </Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
+                        <TouchableOpacity className="flex-1">
+                            <LinearGradient
+                                // Button Linear Gradient
+                                colors={["#dc2626", "#ef4444"]}
+                                start={[0, 0]}
+                                end={[0, 1]}
+                                className="w-full h-12 rounded-md justify-center items-center mt-4 overflow-hidden"
+                            >
+                                <Text className="text-white font-okra_500">
+                                    Delete
+                                </Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
+                    </View>
+                </Animated.View>
+            )}
         </View>
     );
 };

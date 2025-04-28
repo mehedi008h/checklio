@@ -8,7 +8,7 @@ const TaskDetailsScreen = () => {
     return (
         <CustomSafeareaView
             backgroundColor="transparent"
-            barStyle="dark-content"
+            barStyle="light-content"
         >
             <View className="absolute top-0 right-0 bottom-0 left-0">
                 <Image
