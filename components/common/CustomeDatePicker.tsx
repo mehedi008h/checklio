@@ -1,8 +1,6 @@
-import { View, Text, Button, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
-import DateTimePicker, {
-    DateTimePickerAndroid,
-} from "@react-native-community/datetimepicker";
+import { View, Text, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import Entypo from "@expo/vector-icons/Entypo";
 
@@ -11,6 +9,11 @@ interface CustomeDatePickerProps {
     timeLabel?: string;
     dateRequired?: boolean;
     timeRequired?: boolean;
+    name: string;
+    value?: string | number;
+    setCustomeValue: (id: string, value: string | number) => void;
+    error?: boolean;
+    errorMessage?: string;
 }
 
 const CustomeDatePicker = ({
@@ -18,17 +21,22 @@ const CustomeDatePicker = ({
     timeLabel,
     dateRequired,
     timeRequired,
+    value,
+    name,
+    setCustomeValue,
+    error,
+    errorMessage,
 }: CustomeDatePickerProps) => {
-    const [date, setDate] = useState(new Date());
+    const date = new Date();
 
-    const onChange = (event, selectedDate) => {
+    const onChange = (event: any, selectedDate: any) => {
         const currentDate = selectedDate;
-        setDate(currentDate);
+        setCustomeValue(name, currentDate);
     };
 
-    const showMode = (currentMode) => {
+    const showMode = (currentMode: "date" | "time") => {
         DateTimePickerAndroid.open({
-            value: date,
+            value: value ? new Date(value) : date,
             onChange,
             mode: currentMode,
             is24Hour: true,
@@ -42,59 +50,74 @@ const CustomeDatePicker = ({
     const showTimepicker = () => {
         showMode("time");
     };
+
     return (
-        <View className="flex-row justify-between items-center gap-2 mt-4">
-            {/* date  */}
-            <View className="flex-1 ">
-                {dateLabel && (
-                    <View className="flex-row items-start gap-1">
+        <View>
+            <View className="flex-row justify-between items-center gap-2 mt-4">
+                {/* date  */}
+                <View className="flex-1 ">
+                    {dateLabel && (
+                        <View className="flex-row items-start gap-1">
+                            <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                                {dateLabel}
+                            </Text>
+                            {dateRequired && (
+                                <Text className="text-red-500">*</Text>
+                            )}
+                        </View>
+                    )}
+
+                    <TouchableOpacity
+                        onPress={showDatepicker}
+                        className={`bg-transparent w-full flex-row justify-between items-center px-2 py-3 rounded-md border  text-neutral-600  font-okra_400 mt-1 ${
+                            error ? "border-red-500" : "border-neutral-500"
+                        }`}
+                    >
                         <Text className="text-base font-okra_500 text-neutral-600 font-medium">
-                            {dateLabel}
+                            {value
+                                ? new Date(value).toLocaleDateString()
+                                : date.toLocaleDateString()}
                         </Text>
-                        {dateRequired && (
-                            <Text className="text-red-500">*</Text>
-                        )}
-                    </View>
-                )}
 
-                <TouchableOpacity
-                    onPress={showDatepicker}
-                    className="bg-transparent w-full flex-row justify-between items-center px-2 py-3 rounded-md border border-neutral-500 text-neutral-600  font-okra_400 mt-1"
-                >
-                    <Text className="text-base font-okra_500 text-neutral-600 font-medium">
-                        {date.toLocaleDateString()}
-                    </Text>
+                        <Fontisto name="date" size={18} color="#525252" />
+                    </TouchableOpacity>
+                </View>
 
-                    <Fontisto name="date" size={18} color="#525252" />
-                </TouchableOpacity>
+                {/* time  */}
+                <View className="flex-1 ">
+                    {timeLabel && (
+                        <View className="flex-row items-start gap-1">
+                            <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                                {timeLabel}
+                            </Text>
+                            {timeRequired && (
+                                <Text className="text-red-500">*</Text>
+                            )}
+                        </View>
+                    )}
+                    <TouchableOpacity
+                        onPress={showTimepicker}
+                        className={`bg-transparent w-full flex-row justify-between items-center px-2 py-3 rounded-md border  text-neutral-600  font-okra_400 mt-1 ${
+                            error ? "border-red-500" : "border-neutral-500"
+                        }`}
+                    >
+                        <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                            {value
+                                ? new Date(value).toLocaleTimeString()
+                                : date.toLocaleTimeString()}
+                        </Text>
+
+                        <Entypo name="back-in-time" size={20} color="#525252" />
+                    </TouchableOpacity>
+                </View>
             </View>
 
-            {/* time  */}
-            <View className="flex-1 ">
-                {timeLabel && (
-                    <View className="flex-row items-start gap-1">
-                        <Text className="text-base font-okra_500 text-neutral-600 font-medium">
-                            {timeLabel}
-                        </Text>
-                        {timeRequired && (
-                            <Text className="text-red-500">*</Text>
-                        )}
-                    </View>
-                )}
-                <TouchableOpacity
-                    onPress={showTimepicker}
-                    className="bg-transparent w-full flex-row justify-between items-center px-2 py-3 rounded-md border border-neutral-500 text-neutral-600  font-okra_400 mt-1"
-                >
-                    <Text className="text-base font-okra_500 text-neutral-600 font-medium">
-                        {date.toLocaleTimeString()}
-                    </Text>
-
-                    <Entypo name="back-in-time" size={20} color="#525252" />
-                </TouchableOpacity>
-            </View>
-            {/* <Button onPress={showDatepicker} title="Show date picker!" />
-            <Button onPress={showTimepicker} title="Show time picker!" /> */}
-            {/* <Text>selected: {date.toLocaleString()}</Text> */}
+            {/* error message  */}
+            {error && errorMessage && (
+                <Text className="text-red-500 text-sm font-okra_400 mt-1">
+                    {errorMessage}
+                </Text>
+            )}
         </View>
     );
 };

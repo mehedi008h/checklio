@@ -6,35 +6,92 @@ import {
     KeyboardAvoidingView,
     ScrollView,
     Keyboard,
+    ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { BlurView } from "expo-blur";
-import CustomeDatePicker from "../common/CustomeDatePicker";
-import Tag from "../common/Tag";
+import { Controller, useForm } from "react-hook-form";
 import Animated, {
     FadeInDown,
     FadeOutDown,
     LinearTransition,
 } from "react-native-reanimated";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { LinearGradient } from "expo-linear-gradient";
 
+import CustomeDatePicker from "../common/CustomeDatePicker";
+import Tag from "../common/Tag";
+
+// task priority
 enum TaskPriority {
     Low = "Low",
     Medium = "Medium",
     High = "High",
 }
 
+// task type
+export interface Task {
+    title: string;
+    startDate: string;
+    endDate: string;
+    taskPriority: TaskPriority;
+    taskNote: string;
+}
+
 const CreateTask = () => {
+    const [loading, setLoading] = useState<boolean>(false);
+    const [isKeyboardVisible, setIsKeyboardVisible] = useState<boolean>(false);
     const [taskPriority, setTaskPriority] = useState<TaskPriority>(
         TaskPriority.Low
     );
-    const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+
+    const {
+        control,
+        handleSubmit,
+        setValue,
+        reset,
+        formState: { errors },
+    } = useForm<Task>({
+        defaultValues: {
+            title: "",
+            startDate: "",
+            endDate: "",
+            taskPriority: TaskPriority.Low,
+            taskNote: "",
+        },
+    });
+
+    // handle task priority
     const handleTaskPriority = (type: TaskPriority) => {
         setTaskPriority(type);
+        setCustomValue("taskPriority", type);
     };
 
+    // handle custome value
+    const setCustomValue = (id: any, value: any) => {
+        setValue(id, value, {
+            shouldDirty: true,
+            shouldTouch: true,
+            shouldValidate: true,
+        });
+    };
+
+    // handle form submit
+    const onSubmit = async (task: Task) => {
+        Keyboard.dismiss();
+        setLoading(true);
+        console.log("Data: ", JSON.stringify(task));
+
+        // try {
+        //   await addDonar(data);
+        //   resetAndNavigate('BottomTabNavigation');
+        // } catch (error: any) {
+        //   Alert.alert('Error', error.message);
+        // } finally {
+        //   setLoading(false);
+        // }
+    };
+
+    // handle keyboard visibility
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
             "keyboardDidShow",
@@ -61,32 +118,89 @@ const CreateTask = () => {
                     className="flex-1 m-4 rounded-md p-4 overflow-hidden"
                 >
                     <KeyboardAvoidingView>
-                        <View>
-                            <View className="flex-row items-start gap-1">
-                                <Text className="text-base font-okra_500 text-neutral-600 font-medium">
-                                    Task Title
-                                </Text>
-                                <Text className="text-red-500">*</Text>
-                            </View>
-                            <TextInput
-                                className="bg-transparent px-2 py-3 rounded-md border border-neutral-500 text-neutral-600  font-okra_400 mt-1"
-                                placeholder="Task Title"
-                                placeholderTextColor="#737373"
-                            />
-                        </View>
+                        {/* task title  */}
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({
+                                field: { onChange, onBlur, value },
+                            }) => (
+                                <View>
+                                    {/* task title  */}
+                                    <View className="flex-row items-start gap-1">
+                                        <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                                            Task Title
+                                        </Text>
+                                        <Text className="text-red-500">*</Text>
+                                    </View>
+                                    <TextInput
+                                        className={`bg-transparent px-2 py-3 rounded-md border text-neutral-600  font-okra_400 mt-1 ${
+                                            errors.title
+                                                ? "border-red-500"
+                                                : "border-neutral-500"
+                                        }`}
+                                        placeholder="Task Title"
+                                        placeholderTextColor="#737373"
+                                        onBlur={onBlur}
+                                        onChangeText={onChange}
+                                        value={value}
+                                    />
+                                    {errors.title && (
+                                        <Text className="text-red-500 text-sm font-okra_400 mt-1">
+                                            Task title is required
+                                        </Text>
+                                    )}
+                                </View>
+                            )}
+                            name="title"
+                        />
 
                         {/* start date & time  */}
-                        <CustomeDatePicker
-                            dateLabel="Start Date"
-                            timeLabel="Start Time"
-                            dateRequired
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({
+                                field: { onChange, onBlur, value },
+                            }) => (
+                                <CustomeDatePicker
+                                    dateLabel="Start Date"
+                                    timeLabel="Start Time"
+                                    dateRequired
+                                    name="startDate"
+                                    value={value}
+                                    setCustomeValue={setCustomValue}
+                                    error={errors.startDate ? true : false}
+                                    errorMessage="Start date & time is required"
+                                />
+                            )}
+                            name="startDate"
                         />
 
                         {/* end date & time  */}
-                        <CustomeDatePicker
-                            dateLabel="End Date"
-                            timeLabel="End Time"
-                            dateRequired
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({
+                                field: { onChange, onBlur, value },
+                            }) => (
+                                <CustomeDatePicker
+                                    dateLabel="End Date"
+                                    timeLabel="End Time"
+                                    dateRequired
+                                    name="endDate"
+                                    value={value}
+                                    setCustomeValue={setCustomValue}
+                                    error={errors.endDate ? true : false}
+                                    errorMessage="End date & time is required"
+                                />
+                            )}
+                            name="endDate"
                         />
 
                         {/* task priority  */}
@@ -94,60 +208,91 @@ const CreateTask = () => {
                             <Text className="text-base font-okra_500 text-neutral-600 font-medium">
                                 Task Priority
                             </Text>
-                            <Text className="text-red-500">*</Text>
-                        </View>
-                        <View className="flex-row items-center justify-between mt-2 gap-2">
-                            <Tag
-                                title={TaskPriority.Low}
-                                onPress={() =>
-                                    handleTaskPriority(TaskPriority.Low)
-                                }
-                                color={
-                                    taskPriority === TaskPriority.Low
-                                        ? "bg-blue-500"
-                                        : ""
-                                }
-                            />
-                            <Tag
-                                title={TaskPriority.Medium}
-                                onPress={() =>
-                                    handleTaskPriority(TaskPriority.Medium)
-                                }
-                                color={
-                                    taskPriority === TaskPriority.Medium
-                                        ? "bg-yellow-500"
-                                        : ""
-                                }
-                            />
-                            <Tag
-                                title={TaskPriority.High}
-                                onPress={() =>
-                                    handleTaskPriority(TaskPriority.High)
-                                }
-                                color={
-                                    taskPriority === TaskPriority.High
-                                        ? "bg-red-500"
-                                        : ""
-                                }
-                            />
+                            <Text className="text-neutral-400 text-xs font-okra_400">
+                                (Default LOW)
+                            </Text>
                         </View>
 
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({
+                                field: { onChange, onBlur, value },
+                            }) => (
+                                <View className="flex-row items-center justify-between mt-2 gap-2">
+                                    <Tag
+                                        title={TaskPriority.Low}
+                                        onPress={() =>
+                                            handleTaskPriority(TaskPriority.Low)
+                                        }
+                                        color={
+                                            value === TaskPriority.Low
+                                                ? "bg-blue-500"
+                                                : ""
+                                        }
+                                    />
+                                    <Tag
+                                        title={TaskPriority.Medium}
+                                        onPress={() =>
+                                            handleTaskPriority(
+                                                TaskPriority.Medium
+                                            )
+                                        }
+                                        color={
+                                            value === TaskPriority.Medium
+                                                ? "bg-yellow-500"
+                                                : ""
+                                        }
+                                    />
+                                    <Tag
+                                        title={TaskPriority.High}
+                                        onPress={() =>
+                                            handleTaskPriority(
+                                                TaskPriority.High
+                                            )
+                                        }
+                                        color={
+                                            value === TaskPriority.High
+                                                ? "bg-red-500"
+                                                : ""
+                                        }
+                                    />
+                                </View>
+                            )}
+                            name="taskPriority"
+                        />
+
                         {/* task note  */}
-                        <View className="mt-4">
-                            <View className="flex-row items-start gap-1">
-                                <Text className="text-base font-okra_500 text-neutral-600 font-medium">
-                                    Task Note
-                                </Text>
-                                <Text className="text-red-500">*</Text>
-                            </View>
-                            <TextInput
-                                className="bg-transparent p-3 rounded-md border border-neutral-500 text-neutral-600  font-okra_400 mt-1"
-                                placeholder="Write your task note here..."
-                                placeholderTextColor="#737373"
-                                multiline={true}
-                                numberOfLines={8}
-                            />
-                        </View>
+                        <Controller
+                            control={control}
+                            render={({
+                                field: { onChange, onBlur, value },
+                            }) => (
+                                <View className="mt-4">
+                                    <View className="flex-row items-start gap-1">
+                                        <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                                            Task Note
+                                        </Text>
+                                        <Text className="text-neutral-400 text-xs font-okra_400">
+                                            (Optional)
+                                        </Text>
+                                    </View>
+                                    <TextInput
+                                        className="bg-transparent p-3 rounded-md border border-neutral-500 text-neutral-600  font-okra_400 mt-1"
+                                        placeholder="Write your task note here..."
+                                        placeholderTextColor="#737373"
+                                        multiline={true}
+                                        numberOfLines={8}
+                                        onBlur={onBlur}
+                                        onChangeText={onChange}
+                                        value={value}
+                                    />
+                                </View>
+                            )}
+                            name="taskNote"
+                        />
                     </KeyboardAvoidingView>
                 </BlurView>
             </ScrollView>
@@ -167,7 +312,10 @@ const CreateTask = () => {
                         className="flex-1 pb-4 flex-row justify-evenly items-center gap-2 px-4 bg-neutral-400"
                     >
                         <View className="flex-row items-center justify-between gap-2 ">
-                            <TouchableOpacity className="flex-1">
+                            <TouchableOpacity
+                                onPress={loading ? () => {} : () => reset()}
+                                className="flex-1"
+                            >
                                 <LinearGradient
                                     // Button Linear Gradient
                                     colors={["#a3a3a3", "#737373"]}
@@ -180,7 +328,12 @@ const CreateTask = () => {
                                     </Text>
                                 </LinearGradient>
                             </TouchableOpacity>
-                            <TouchableOpacity className="flex-1">
+                            <TouchableOpacity
+                                onPress={
+                                    loading ? () => {} : handleSubmit(onSubmit)
+                                }
+                                className="flex-1"
+                            >
                                 <LinearGradient
                                     // Button Linear Gradient
                                     colors={["#404040", "#293E33"]}
@@ -188,9 +341,16 @@ const CreateTask = () => {
                                     end={[0, 1]}
                                     className="w-full h-12 rounded-md justify-center items-center mt-4 overflow-hidden"
                                 >
-                                    <Text className="text-white font-okra_500">
-                                        Create
-                                    </Text>
+                                    {loading ? (
+                                        <ActivityIndicator
+                                            className="text-neutral-400"
+                                            size="small"
+                                        />
+                                    ) : (
+                                        <Text className="text-white font-okra_500">
+                                            Create
+                                        </Text>
+                                    )}
                                 </LinearGradient>
                             </TouchableOpacity>
                         </View>

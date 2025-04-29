@@ -39,6 +39,7 @@
     "nativewind": "^4.1.23",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-hook-form": "^7.56.1",
     "react-native": "0.76.8",
     "react-native-bouncy-checkbox": "^3.0.5",
     "react-native-calendars": "^1.1310.0",
