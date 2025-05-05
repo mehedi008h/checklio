@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useNavigation, useRouter } from "expo-router";
@@ -28,7 +28,7 @@ const RecentTasks = () => {
     }, [navigation, openModal]);
 
     return (
-        <View className="p-4 h-full  relative">
+        <View className="px-4 pb-72 pt-4 h-full  relative ">
             {/* header  */}
             <View className="flex-row justify-between items-center mb-3">
                 <Text className="text-xl font-bold font-okra_700 text-neutral-700">
@@ -52,6 +52,19 @@ const RecentTasks = () => {
             {/* recent tasks */}
 
             <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
+                <Task onPress={() => router.push("/taskDetails")} />
                 <Task onPress={() => router.push("/taskDetails")} />
             </ScrollView>
             {openModal && (

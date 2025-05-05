@@ -5,7 +5,7 @@ import { BlurView } from "expo-blur";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import Calendar from "../common/Calendar";
+import Stack from "../common/Stack";
 
 const HomeHeader = () => {
     return (
@@ -21,7 +21,7 @@ const HomeHeader = () => {
                     <Text className="text-lg font-okra_500 text-neutral-300">
                         Good Morning
                     </Text>
-                    <Text className="text-3xl font-okra_500 text-neutral-100">
+                    <Text className="text-2xl font-okra_500 text-neutral-100">
                         Mehedi Hasan
                     </Text>
                 </View>
@@ -42,10 +42,20 @@ const HomeHeader = () => {
                 </TouchableOpacity>
             </View>
 
+            <View className="flex-row items-center justify-between px-8 mt-8">
+                <Stack day="Mon" value={30} />
+                <Stack day="Tue" value={20} />
+                <Stack day="Wed" value={60} />
+                <Stack day="Thr" value={80} />
+                <Stack day="Fri" value={40} />
+                <Stack day="Sat" value={90} />
+                <Stack day="Sun" value={100} />
+            </View>
+
             <BlurView
                 intensity={10}
                 tint="prominent"
-                className="h-16 w-full my-5 rounded-md overflow-hidden flex-row  justify-between items-center px-2 gap-3"
+                className="h-16 w-full mb-5 mt-1 rounded-md overflow-hidden flex-row  justify-between items-center px-2 gap-3"
             >
                 <View className="flex-row items-center gap-3">
                     <MaterialCommunityIcons
@@ -57,7 +67,7 @@ const HomeHeader = () => {
                         <Text className="text-lg font-okra_700 font-bold text-neutral-300">
                             Flight to Dhaka at 10:00 AM
                         </Text>
-                        <Text className="text-base font-okra_300 text-neutral-400">
+                        <Text className="text-sm font-okra_300 text-neutral-400">
                             Lorem ipsum dolor sit amet ipsum dolor
                         </Text>
                     </View>
@@ -67,12 +77,6 @@ const HomeHeader = () => {
                     size={15}
                     color="#d4d4d4"
                 />
-            </BlurView>
-            <BlurView
-                intensity={10}
-                className="h-24 w-full mb-5 rounded-md overflow-hidden p-3"
-            >
-                <Calendar />
             </BlurView>
         </LinearGradient>
     );
