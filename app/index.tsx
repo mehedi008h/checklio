@@ -23,7 +23,7 @@ const SplashScreen = () => {
         };
     });
     return (
-        <CustomSafeareaView backgroundColor="transparent">
+        <CustomSafeareaView backgroundColor="transparent" barStyle="light">
             <NoiseBackground />
             <Animated.View
                 entering={FadeInDown.duration(400).delay(150)}

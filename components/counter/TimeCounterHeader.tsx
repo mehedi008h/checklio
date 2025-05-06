@@ -67,7 +67,7 @@ const TimeCounterHeader = () => {
     }, []);
     return (
         <LinearGradient
-            colors={["#404040", "#293E33"]}
+            colors={["#97866A", "#735557"]}
             start={[0, 0]}
             end={[0, 1]}
             className="justify-end items-center h-96 space-y-10 bg-amber-500 pb-4"

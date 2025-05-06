@@ -6,10 +6,7 @@ import TaskDetails from "@/components/tasks/TaskDetails";
 
 const TaskDetailsScreen = () => {
     return (
-        <CustomSafeareaView
-            backgroundColor="transparent"
-            barStyle="light-content"
-        >
+        <CustomSafeareaView backgroundColor="transparent" barStyle="light">
             <View className="absolute top-0 right-0 bottom-0 left-0">
                 <Image
                     source={require("../assets/images/todo_bg.png")}

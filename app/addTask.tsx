@@ -8,7 +8,7 @@ const AddTaskScreen = () => {
     return (
         <CustomSafeareaView
             backgroundColor="transparent"
-            barStyle="light-content"
+            barStyle="light"
             classStyle="flex-1 bg-white"
         >
             <View className="absolute top-0 right-0 bottom-0 left-0">
