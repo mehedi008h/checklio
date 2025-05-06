@@ -1,27 +1,28 @@
 import React, { FC } from "react";
-import { View, SafeAreaView, StatusBar } from "react-native";
+import { View, SafeAreaView } from "react-native";
+import { StatusBar, StatusBarStyle } from "expo-status-bar";
 
 interface CustomeSafeAreaViewProps {
     children: React.ReactNode;
     classStyle?: string;
     statusbarStyle?: string;
-    barStyle?: "default" | "light-content" | "dark-content";
+    barStyle: StatusBarStyle | undefined;
     backgroundColor?: string;
 }
 
 const CustomSafeareaView: FC<CustomeSafeAreaViewProps> = ({
     children,
     classStyle,
-    barStyle = "light-content",
-    backgroundColor = "#000000",
+    barStyle = "dark",
+    backgroundColor = "transparent",
 }) => {
     const styleClass = `flex-1 bg-white ${classStyle}`;
     return (
         <SafeAreaView className={styleClass}>
             <StatusBar
-                barStyle={barStyle}
+                style={barStyle}
                 translucent
-                backgroundColor={backgroundColor}
+                backgroundColor={"transparent"}
             />
             <View className={styleClass}>{children}</View>
         </SafeAreaView>

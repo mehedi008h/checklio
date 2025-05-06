@@ -6,6 +6,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { BlurView } from "expo-blur";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function TabLayout() {
     const colorScheme = useColorScheme();
@@ -114,6 +115,38 @@ export default function TabLayout() {
                                 />
                             </BlurView>
                         </TouchableOpacity>
+                    ),
+                }}
+            />
+
+            <Tabs.Screen
+                name="timeCounter"
+                options={{
+                    tabBarLabel: ({ focused }) => {
+                        return (
+                            <Text
+                                className={`${
+                                    focused
+                                        ? "text-teal-800"
+                                        : "text-neutral-600"
+                                } font-okra_400 text-sm font-normal`}
+                            >
+                                Counter
+                            </Text>
+                        );
+                    },
+                    headerShown: true,
+                    headerTransparent: true,
+                    headerTitle: "",
+                    headerStyle: {
+                        backgroundColor: "transparent",
+                    },
+                    tabBarIcon: ({ focused }) => (
+                        <Ionicons
+                            name="stopwatch-outline"
+                            size={24}
+                            color={focused ? "#115e59" : "#525252"}
+                        />
                     ),
                 }}
             />

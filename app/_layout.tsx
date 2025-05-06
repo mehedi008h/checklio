@@ -6,19 +6,17 @@ import {
 } from "@react-navigation/native";
 import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import { useFonts } from "expo-font";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { Text, TouchableOpacity, View } from "react-native";
-import { BlurView } from "expo-blur";
-import Ionicons from "@expo/vector-icons/Ionicons";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+// Set the animation options (optional)
 
 export default function RootLayout() {
     const colorScheme = useColorScheme();
@@ -69,7 +67,6 @@ export default function RootLayout() {
                     />
                     <Stack.Screen name="+not-found" />
                 </Stack>
-                <StatusBar style="auto" />
             </ThemeProvider>
         </GestureHandlerRootView>
     );
