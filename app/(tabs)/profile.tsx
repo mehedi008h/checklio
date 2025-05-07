@@ -2,11 +2,10 @@ import { View, Image, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import CustomSafeareaView from "@/components/common/CustomSafeAreaView";
-import AddTaskHeader from "@/components/tasks/AddTaskHeader";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import WorkTime from "@/components/counter/WorkTime";
 
 const ProfileScreen = () => {
     return (
@@ -67,6 +66,7 @@ const ProfileScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
+            <WorkTime />
         </CustomSafeareaView>
     );
 };

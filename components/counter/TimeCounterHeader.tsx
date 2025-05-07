@@ -85,7 +85,7 @@ const TimeCounterHeader = () => {
                             <Ionicons
                                 name="play-circle-outline"
                                 size={80}
-                                color="#115e59"
+                                color="#404040"
                             />
                         ) : (
                             <Ionicons
