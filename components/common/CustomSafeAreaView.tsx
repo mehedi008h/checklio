@@ -23,7 +23,6 @@ const CustomSafeareaView: FC<CustomeSafeAreaViewProps> = ({
                 style={barStyle}
                 translucent
                 backgroundColor={"transparent"}
-                hidden
             />
             <View className={styleClass}>{children}</View>
         </SafeAreaView>

@@ -52,7 +52,12 @@ export default function RootLayout() {
                     <Stack.Screen
                         name="userDetails"
                         options={{
-                            presentation: "modal",
+                            headerShown: false,
+                        }}
+                    />
+                    <Stack.Screen
+                        name="counter"
+                        options={{
                             headerShown: false,
                         }}
                     />
