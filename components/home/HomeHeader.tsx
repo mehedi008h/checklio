@@ -53,7 +53,7 @@ const HomeHeader = () => {
                 <Stack day="Sun" value={100} />
             </View>
 
-            <BlurView
+            {/* <BlurView
                 intensity={10}
                 tint="prominent"
                 className="h-16 w-full mb-5 mt-1 rounded-md overflow-hidden flex-row  justify-between items-center px-2 gap-3"
@@ -78,6 +78,38 @@ const HomeHeader = () => {
                     size={15}
                     color="#d4d4d4"
                 />
+            </BlurView> */}
+            <BlurView
+                tint="light"
+                intensity={10}
+                className="p-4 rounded-lg overflow-hidden mb-4"
+            >
+                <View className="flex-row items-center gap-3">
+                    <MaterialCommunityIcons
+                        name="reminder"
+                        size={24}
+                        color="#d4d4d4"
+                    />
+                    <View>
+                        <Text className="text-xl font-okra_500 font-medium text-neutral-100 capitalize">
+                            7 tasks to complete today
+                        </Text>
+                        <Text className="text-sm font-okra_300 text-neutral-300 mt-1">
+                            Your productivity for the day is shown here
+                        </Text>
+                    </View>
+                </View>
+                <View className="flex-row justify-between items-center mt-2">
+                    <Text className="text-neutral-300 font-okra_300 text-sm">
+                        Complete
+                    </Text>
+                    <Text className="text-neutral-300 font-okra_300 text-sm">
+                        2/7
+                    </Text>
+                </View>
+                <View className="h-1 w-full bg-neutral-400 rounded-full mt-2">
+                    <View className="h-1 w-[40%] bg-teal-600 rounded-full"></View>
+                </View>
             </BlurView>
         </LinearGradient>
     );

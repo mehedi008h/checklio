@@ -13,7 +13,6 @@ import Animated, {
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { BlurView } from "expo-blur";
 import { useRouter } from "expo-router";
-import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 const CounterScreen = () => {
@@ -68,7 +67,7 @@ const CounterScreen = () => {
         ring2padding.value = 0;
         setTimeout(
             () => (ring1padding.value = withSpring(ring1padding.value + 50)),
-            100
+            300
         );
         setTimeout(
             () => (ring2padding.value = withSpring(ring2padding.value + 50.5)),

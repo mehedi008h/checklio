@@ -24,6 +24,7 @@ export default function TabLayout() {
                 headerShown: false,
                 tabBarStyle: {
                     elevation: 0,
+                    display: "flex",
                 },
             }}
         >
