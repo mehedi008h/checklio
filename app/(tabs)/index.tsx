@@ -29,6 +29,7 @@ import { times } from "lodash";
 import Task from "@/components/tasks/Task";
 import { useFocusEffect, useNavigation, useRouter } from "expo-router";
 import Note from "@/components/notes/Note";
+import { useModalStore } from "@/store/useModalStore";
 
 interface TaskTypeProps {
     title: string;
@@ -55,7 +56,8 @@ const TaskType: React.FC<TaskTypeProps> = ({ title, selected, onPress }) => {
 const HomeScreen = () => {
     const router = useRouter();
     const [selected, setSelected] = useState<string>("All");
-    const [openModal, setOpenModal] = useState<boolean>(false);
+    // const [openModal, setOpenModal] = useState<boolean>(false);
+    const { openModal, setModalContent } = useModalStore();
 
     const handleSelected = (type: string) => {
         setSelected(type);
@@ -65,27 +67,6 @@ const HomeScreen = () => {
     };
 
     const navigation = useNavigation();
-
-    /// Toggle tab bar visibility
-    useEffect(() => {
-        const parent = navigation.getParent(); // Get the Tab Navigator
-        if (parent) {
-            parent.setOptions({
-                tabBarStyle: {
-                    display: openModal ? "none" : "flex",
-                },
-            });
-        }
-
-        // // Reset when screen unmounts
-        // return () => {
-        //     if (parent) {
-        //         parent.setOptions({
-        //             tabBarStyle: { display: "flex" },
-        //         });
-        //     }
-        // };
-    }, [openModal]);
 
     return (
         <CustomSafeareaView
@@ -180,7 +161,7 @@ const HomeScreen = () => {
                             task
                         </Text>
                         <TouchableOpacity
-                            onPress={() => setOpenModal(true)}
+                            onPress={openModal}
                             className="mt-3 w-full"
                         >
                             <LinearGradient
@@ -289,7 +270,7 @@ const HomeScreen = () => {
                     <Task />
                 </View>
             </ScrollView>
-            {openModal && (
+            {/* {openModal && (
                 <Animated.View
                     entering={FadeInDown.duration(400).delay(150)}
                     exiting={FadeOutDown.duration(400).delay(150)}
@@ -338,7 +319,7 @@ const HomeScreen = () => {
                         </TouchableOpacity>
                     </View>
                 </Animated.View>
-            )}
+            )} */}
         </CustomSafeareaView>
     );
 };

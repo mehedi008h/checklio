@@ -3,7 +3,6 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { BlurView } from "expo-blur";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -19,6 +18,7 @@ export default function TabLayout() {
     return (
         <Tabs
             screenOptions={{
+                animation: "shift",
                 tabBarHideOnKeyboard: true,
                 tabBarActiveTintColor: "blue",
                 headerShown: false,

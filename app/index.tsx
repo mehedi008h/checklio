@@ -13,7 +13,7 @@ import { useRouter } from "expo-router";
 const SplashScreen = () => {
     const router = useRouter();
     const navigateTOHome = () => {
-        router.navigate("/userDetails");
+        router.navigate("/(tabs)");
     };
 
     useEffect(() => {

@@ -12,6 +12,7 @@ import { useFonts } from "expo-font";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import ModalProvider from "@/components/common/ModalProvider";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -44,41 +45,48 @@ export default function RootLayout() {
             <ThemeProvider
                 value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
             >
-                <Stack>
-                    <Stack.Screen
-                        name="index"
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="userDetails"
-                        options={{
-                            headerShown: false,
+                <ModalProvider>
+                    <Stack
+                        screenOptions={{
+                            animation: "fade_from_bottom",
+                            animationDuration: 400,
                         }}
-                    />
-                    <Stack.Screen
-                        name="counter"
-                        options={{
-                            headerShown: false,
-                        }}
-                    />
-                    <Stack.Screen
-                        name="(tabs)"
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="taskDetails"
-                        options={{
-                            headerShown: false,
-                        }}
-                    />
-                    <Stack.Screen
-                        name="addTask"
-                        options={{
-                            headerShown: false,
-                        }}
-                    />
-                    <Stack.Screen name="+not-found" />
-                </Stack>
+                    >
+                        <Stack.Screen
+                            name="index"
+                            options={{ headerShown: false }}
+                        />
+                        <Stack.Screen
+                            name="userDetails"
+                            options={{
+                                headerShown: false,
+                            }}
+                        />
+                        <Stack.Screen
+                            name="counter"
+                            options={{
+                                headerShown: false,
+                            }}
+                        />
+                        <Stack.Screen
+                            name="(tabs)"
+                            options={{ headerShown: false }}
+                        />
+                        <Stack.Screen
+                            name="taskDetails"
+                            options={{
+                                headerShown: false,
+                            }}
+                        />
+                        <Stack.Screen
+                            name="addTask"
+                            options={{
+                                headerShown: false,
+                            }}
+                        />
+                        <Stack.Screen name="+not-found" />
+                    </Stack>
+                </ModalProvider>
             </ThemeProvider>
         </GestureHandlerRootView>
     );
