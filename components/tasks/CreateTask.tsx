@@ -130,19 +130,19 @@ const CreateTask = () => {
                                 <View>
                                     {/* task title  */}
                                     <View className="flex-row items-start gap-1">
-                                        <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                                        <Text className="text-base font-okra_500 text-neutral-200 font-medium">
                                             Task Title
                                         </Text>
                                         <Text className="text-red-500">*</Text>
                                     </View>
                                     <TextInput
-                                        className={`bg-transparent px-2 py-3 rounded-md border text-neutral-600  font-okra_400 mt-1 ${
+                                        className={`bg-transparent px-2 py-3 rounded-md border text-neutral-300  font-okra_400 mt-1 ${
                                             errors.title
                                                 ? "border-red-500"
-                                                : "border-neutral-500"
+                                                : "border-neutral-400"
                                         }`}
                                         placeholder="Task Title"
-                                        placeholderTextColor="#737373"
+                                        placeholderTextColor="#d4d4d4"
                                         onBlur={onBlur}
                                         onChangeText={onChange}
                                         value={value}
@@ -204,11 +204,11 @@ const CreateTask = () => {
                         />
 
                         {/* task priority  */}
-                        <View className="flex-row items-start gap-1 mt-4">
-                            <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                        <View className="flex-row items-center gap-1 mt-4">
+                            <Text className="text-base font-okra_300 text-neutral-200 font-medium">
                                 Task Priority
                             </Text>
-                            <Text className="text-neutral-400 text-xs font-okra_400">
+                            <Text className="text-neutral-300 text-sm font-okra_300">
                                 (Default LOW)
                             </Text>
                         </View>
@@ -271,18 +271,18 @@ const CreateTask = () => {
                                 field: { onChange, onBlur, value },
                             }) => (
                                 <View className="mt-4">
-                                    <View className="flex-row items-start gap-1">
-                                        <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                                    <View className="flex-row items-center gap-1">
+                                        <Text className="text-base font-okra_300 text-neutral-200 font-medium">
                                             Task Note
                                         </Text>
-                                        <Text className="text-neutral-400 text-xs font-okra_400">
+                                        <Text className="text-neutral-300 text-sm font-okra_300">
                                             (Optional)
                                         </Text>
                                     </View>
                                     <TextInput
-                                        className="bg-transparent p-3 rounded-md border border-neutral-500 text-neutral-600  font-okra_400 mt-1"
+                                        className="bg-transparent p-3 rounded-md border border-neutral-400 text-neutral-300  font-okra_400 mt-1"
                                         placeholder="Write your task note here..."
-                                        placeholderTextColor="#737373"
+                                        placeholderTextColor="#d4d4d4"
                                         multiline={true}
                                         numberOfLines={8}
                                         onBlur={onBlur}

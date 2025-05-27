@@ -11,7 +11,7 @@ interface TagProps {
 
 const Tag = ({ onPress, title, color }: TagProps) => {
     return (
-        <View className={`flex-1  rounded-md ${color}`}>
+        <View className={`flex-1 rounded-md ${color}`}>
             <RNBounceable onPress={onPress}>
                 <BlurView
                     tint="dark"
@@ -19,7 +19,7 @@ const Tag = ({ onPress, title, color }: TagProps) => {
                     intensity={50}
                     className="px-4 py-3 rounded-md items-center overflow-hidden"
                 >
-                    <Text className="text-white">{title}</Text>
+                    <Text className="text-white font-okra_300">{title}</Text>
                 </BlurView>
             </RNBounceable>
         </View>

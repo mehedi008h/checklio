@@ -1,10 +1,9 @@
-import { View, Text, TouchableOpacity, Dimensions } from "react-native";
-import React, { useRef } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 import Stack from "../common/Stack";
 
@@ -53,32 +52,6 @@ const HomeHeader = () => {
                 <Stack day="Sun" value={100} />
             </View>
 
-            {/* <BlurView
-                intensity={10}
-                tint="prominent"
-                className="h-16 w-full mb-5 mt-1 rounded-md overflow-hidden flex-row  justify-between items-center px-2 gap-3"
-            >
-                <View className="flex-row items-center gap-3">
-                    <MaterialCommunityIcons
-                        name="reminder"
-                        size={24}
-                        color="#d4d4d4"
-                    />
-                    <View>
-                        <Text className="text-lg font-okra_700 font-bold text-neutral-300">
-                            Flight to Dhaka at 10:00 AM
-                        </Text>
-                        <Text className="text-sm font-okra_300 text-neutral-400">
-                            Lorem ipsum dolor sit amet ipsum dolor
-                        </Text>
-                    </View>
-                </View>
-                <MaterialIcons
-                    name="arrow-forward-ios"
-                    size={15}
-                    color="#d4d4d4"
-                />
-            </BlurView> */}
             <BlurView
                 tint="light"
                 intensity={10}

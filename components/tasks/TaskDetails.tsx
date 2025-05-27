@@ -11,9 +11,15 @@ import Animated, {
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useRouter } from "expo-router";
 
 const TaskDetails = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
+    const router = useRouter();
+
+    const handleUpdateTask = () => {
+        router.push("/updateTask");
+    };
     return (
         <View className="relative flex-1">
             <View className="h-20 w-20 bg-neutral-100 rounded-md absolute -top-10 left-5">
@@ -41,11 +47,6 @@ const TaskDetails = () => {
             <View className="px-4 mt-16">
                 <Text className="text-2xl font-okra_500 text-neutral-800">
                     Task Title
-                </Text>
-                <Text className="text-base font-okra_400 text-neutral-600 mt-2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque ut erat euismod, facilisis ligula nec, efficitur
-                    ligula. Donec ac nunc id enim bibendum fringilla.
                 </Text>
 
                 <BlurView
@@ -83,6 +84,11 @@ const TaskDetails = () => {
                         </Text>
                     </View>
                 </BlurView>
+                <Text className="text-base font-okra_400 text-neutral-600 mt-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Quisque ut erat euismod, facilisis ligula nec, efficitur
+                    ligula. Donec ac nunc id enim bibendum fringilla.
+                </Text>
             </View>
 
             {/* bottom section */}
@@ -107,7 +113,10 @@ const TaskDetails = () => {
                     </TouchableOpacity>
 
                     {/* update task */}
-                    <TouchableOpacity className="h-12 w-12 justify-center items-center bg-blue-500 rounded-full">
+                    <TouchableOpacity
+                        onPress={handleUpdateTask}
+                        className="h-12 w-12 justify-center items-center bg-blue-500 rounded-full"
+                    >
                         <AntDesign name="edit" size={20} color="white" />
                     </TouchableOpacity>
 
@@ -129,7 +138,7 @@ const TaskDetails = () => {
                     entering={FadeInDown.duration(400).delay(150)}
                     exiting={FadeOutDown.duration(400).delay(150)}
                     layout={LinearTransition.duration(400)}
-                    className="absolute bottom-0 right-0 left-0 top-[75%] bg-neutral-300 rounded-t-xl p-4"
+                    className="absolute bottom-0 right-0 left-0 top-[75%] bg-neutral-50 rounded-t-xl p-4"
                 >
                     <View className="flex-col items-center justify-between gap-3">
                         <Ionicons

@@ -58,7 +58,7 @@ const CustomeDatePicker = ({
                 <View className="flex-1 ">
                     {dateLabel && (
                         <View className="flex-row items-start gap-1">
-                            <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                            <Text className="text-base font-okra_500 text-neutral-200 font-medium">
                                 {dateLabel}
                             </Text>
                             {dateRequired && (
@@ -70,16 +70,16 @@ const CustomeDatePicker = ({
                     <TouchableOpacity
                         onPress={showDatepicker}
                         className={`bg-transparent w-full flex-row justify-between items-center px-2 py-3 rounded-md border  text-neutral-600  font-okra_400 mt-1 ${
-                            error ? "border-red-500" : "border-neutral-500"
+                            error ? "border-red-500" : "border-neutral-400"
                         }`}
                     >
-                        <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                        <Text className="text-base font-okra_500 text-neutral-300 font-medium">
                             {value
                                 ? new Date(value).toLocaleDateString()
                                 : date.toLocaleDateString()}
                         </Text>
 
-                        <Fontisto name="date" size={18} color="#525252" />
+                        <Fontisto name="date" size={18} color="#d4d4d4" />
                     </TouchableOpacity>
                 </View>
 
@@ -87,7 +87,7 @@ const CustomeDatePicker = ({
                 <View className="flex-1 ">
                     {timeLabel && (
                         <View className="flex-row items-start gap-1">
-                            <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                            <Text className="text-base font-okra_500 text-neutral-200 font-medium">
                                 {timeLabel}
                             </Text>
                             {timeRequired && (
@@ -98,16 +98,16 @@ const CustomeDatePicker = ({
                     <TouchableOpacity
                         onPress={showTimepicker}
                         className={`bg-transparent w-full flex-row justify-between items-center px-2 py-3 rounded-md border  text-neutral-600  font-okra_400 mt-1 ${
-                            error ? "border-red-500" : "border-neutral-500"
+                            error ? "border-red-500" : "border-neutral-400"
                         }`}
                     >
-                        <Text className="text-base font-okra_500 text-neutral-600 font-medium">
+                        <Text className="text-base font-okra_500 text-neutral-300 font-medium">
                             {value
                                 ? new Date(value).toLocaleTimeString()
                                 : date.toLocaleTimeString()}
                         </Text>
 
-                        <Entypo name="back-in-time" size={20} color="#525252" />
+                        <Entypo name="back-in-time" size={20} color="#d4d4d4" />
                     </TouchableOpacity>
                 </View>
             </View>

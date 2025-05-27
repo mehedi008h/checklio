@@ -3,17 +3,12 @@ import React from "react";
 import TaskDetailsHeader from "@/components/tasks/TaskDetailsHeader";
 import CustomSafeareaView from "@/components/common/CustomSafeAreaView";
 import TaskDetails from "@/components/tasks/TaskDetails";
+import NoiseBackground from "@/components/common/NoiseBackground";
 
 const TaskDetailsScreen = () => {
     return (
         <CustomSafeareaView backgroundColor="transparent" barStyle="light">
-            <View className="absolute top-0 right-0 bottom-0 left-0">
-                <Image
-                    source={require("../assets/images/todo_bg.png")}
-                    resizeMode="repeat"
-                    className="absolute top-0 left-0 bottom-0 right-0 w-full h-full"
-                />
-            </View>
+            <NoiseBackground />
             <TaskDetailsHeader />
             <TaskDetails />
         </CustomSafeareaView>
