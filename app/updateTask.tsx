@@ -1,9 +1,8 @@
-import { View, Image } from "react-native";
 import React from "react";
 import CustomSafeareaView from "@/components/common/CustomSafeAreaView";
-import AddTaskHeader from "@/components/tasks/AddTaskHeader";
 import CreateTask from "@/components/tasks/CreateTask";
 import NoiseBackground from "@/components/common/NoiseBackground";
+import Header from "@/components/common/Header";
 
 const UpdateTaskScreen = () => {
     return (
@@ -13,7 +12,11 @@ const UpdateTaskScreen = () => {
             classStyle="flex-1 bg-white"
         >
             <NoiseBackground />
-            <AddTaskHeader />
+            <Header
+                title="Update Your Task"
+                subtitle="Let's make your day more perfect 😊"
+                backButton
+            />
             <CreateTask />
         </CustomSafeareaView>
     );
