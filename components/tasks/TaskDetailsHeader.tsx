@@ -16,7 +16,7 @@ const TaskDetailsHeader = () => {
             />
             <BlurView
                 tint="dark"
-                intensity={50}
+                intensity={100}
                 className="absolute top-0 h-52 left-0 right-0 px-4 pt-8 flex-row justify-between"
             >
                 {/* left button  */}

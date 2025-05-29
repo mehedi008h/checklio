@@ -20,6 +20,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import CustomeDatePicker from "../common/CustomeDatePicker";
 import Tag from "../common/Tag";
+import { useRouter } from "expo-router";
 
 // task priority
 enum TaskPriority {
@@ -37,12 +38,18 @@ export interface Task {
     taskNote: string;
 }
 
-const CreateTask = () => {
+const UpdateTask = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [isKeyboardVisible, setIsKeyboardVisible] = useState<boolean>(false);
     const [taskPriority, setTaskPriority] = useState<TaskPriority>(
         TaskPriority.Low
     );
+
+    const router = useRouter();
+
+    const goBack = () => {
+        router.back();
+    };
 
     const {
         control,
@@ -170,7 +177,6 @@ const CreateTask = () => {
                                     dateLabel="Start Date"
                                     timeLabel="Start Time"
                                     dateRequired
-                                    timeRequired
                                     name="startDate"
                                     value={value}
                                     setCustomeValue={setCustomValue}
@@ -314,7 +320,7 @@ const CreateTask = () => {
                     >
                         <View className="flex-row items-center justify-between gap-2 ">
                             <TouchableOpacity
-                                onPress={loading ? () => {} : () => reset()}
+                                onPress={loading ? () => {} : goBack}
                                 className="flex-1"
                             >
                                 <LinearGradient
@@ -325,7 +331,7 @@ const CreateTask = () => {
                                     className="w-full h-12 rounded-md justify-center items-center mt-4 overflow-hidden"
                                 >
                                     <Text className="text-white font-okra_500">
-                                        Reset
+                                        Cancle
                                     </Text>
                                 </LinearGradient>
                             </TouchableOpacity>
@@ -349,7 +355,7 @@ const CreateTask = () => {
                                         />
                                     ) : (
                                         <Text className="text-white font-okra_500">
-                                            Create
+                                            Update
                                         </Text>
                                     )}
                                 </LinearGradient>
@@ -362,4 +368,4 @@ const CreateTask = () => {
     );
 };
 
-export default CreateTask;
+export default UpdateTask;

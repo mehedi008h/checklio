@@ -21,11 +21,7 @@ const CustomSafeareaView: FC<CustomeSafeAreaViewProps> = ({
     const insets = useSafeAreaInsets();
     return (
         <>
-            <StatusBar
-                translucent
-                backgroundColor="transparent"
-                style="light"
-            />
+            <StatusBar translucent style="light" />
             {/* View under the status bar */}
             <View
                 style={[styles.statusBarBackground, { height: insets.top }]}

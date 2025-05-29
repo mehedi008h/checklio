@@ -3,6 +3,7 @@ import CustomSafeareaView from "@/components/common/CustomSafeAreaView";
 import CreateTask from "@/components/tasks/CreateTask";
 import NoiseBackground from "@/components/common/NoiseBackground";
 import Header from "@/components/common/Header";
+import UpdateTask from "@/components/tasks/UpdateTask";
 
 const UpdateTaskScreen = () => {
     return (
@@ -17,7 +18,7 @@ const UpdateTaskScreen = () => {
                 subtitle="Let's make your day more perfect 😊"
                 backButton
             />
-            <CreateTask />
+            <UpdateTask />
         </CustomSafeareaView>
     );
 };

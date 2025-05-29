@@ -62,7 +62,7 @@ const CustomeDatePicker = ({
                                 {dateLabel}
                             </Text>
                             {dateRequired && (
-                                <Text className="text-red-500">*</Text>
+                                <Text className="text-red-700">*</Text>
                             )}
                         </View>
                     )}
@@ -70,7 +70,7 @@ const CustomeDatePicker = ({
                     <TouchableOpacity
                         onPress={showDatepicker}
                         className={`bg-transparent w-full flex-row justify-between items-center px-2 py-3 rounded-md border  text-neutral-600  font-okra_400 mt-1 ${
-                            error ? "border-red-500" : "border-neutral-400"
+                            error ? "border-red-700" : "border-neutral-400"
                         }`}
                     >
                         <Text className="text-base font-okra_500 text-neutral-300 font-medium">
@@ -91,14 +91,14 @@ const CustomeDatePicker = ({
                                 {timeLabel}
                             </Text>
                             {timeRequired && (
-                                <Text className="text-red-500">*</Text>
+                                <Text className="text-red-700">*</Text>
                             )}
                         </View>
                     )}
                     <TouchableOpacity
                         onPress={showTimepicker}
                         className={`bg-transparent w-full flex-row justify-between items-center px-2 py-3 rounded-md border  text-neutral-600  font-okra_400 mt-1 ${
-                            error ? "border-red-500" : "border-neutral-400"
+                            error ? "border-red-700" : "border-neutral-400"
                         }`}
                     >
                         <Text className="text-base font-okra_500 text-neutral-300 font-medium">
@@ -114,7 +114,7 @@ const CustomeDatePicker = ({
 
             {/* error message  */}
             {error && errorMessage && (
-                <Text className="text-red-500 text-sm font-okra_400 mt-1">
+                <Text className="text-red-700 text-sm font-okra_400 mt-1">
                     {errorMessage}
                 </Text>
             )}

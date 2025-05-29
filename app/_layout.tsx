@@ -72,7 +72,11 @@ export default function RootLayout() {
                             />
                             <Stack.Screen
                                 name="(tabs)"
-                                options={{ headerShown: false }}
+                                options={{
+                                    headerShown: false,
+                                    animation: "fade_from_bottom",
+                                    animationDuration: 400,
+                                }}
                             />
                             <Stack.Screen
                                 name="taskDetails"
