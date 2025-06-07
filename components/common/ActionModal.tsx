@@ -14,11 +14,9 @@ const ActionModal = () => {
     const { closeModal } = useModalStore();
 
     const handleRouter = (type: ActionType) => {
-        if (type === ActionType.TASK) {
-            router.push("/addTask");
-        } else {
-            router.push("/taskDetails");
-        }
+        type === ActionType.TASK
+            ? router.push("/addTask")
+            : router.push("/takeNote");
         closeModal();
     };
     return (

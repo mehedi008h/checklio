@@ -96,6 +96,12 @@ export default function RootLayout() {
                                     headerShown: false,
                                 }}
                             />
+                            <Stack.Screen
+                                name="takeNote"
+                                options={{
+                                    headerShown: false,
+                                }}
+                            />
                             <Stack.Screen name="+not-found" />
                         </Stack>
                     </ModalProvider>
