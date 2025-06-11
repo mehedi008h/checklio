@@ -7,8 +7,10 @@ import {
     KeyboardAvoidingView,
     Platform,
     SafeAreaView,
+    Keyboard,
+    FlatList,
 } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import NoiseBackground from "@/components/common/NoiseBackground";
 import { BlurView } from "expo-blur";
 import { useRouter } from "expo-router";
@@ -17,15 +19,23 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import Animated, {
+    FadeInDown,
     FadeInUp,
+    FadeOutDown,
     FadeOutUp,
     LinearTransition,
 } from "react-native-reanimated";
+import { LinearGradient } from "expo-linear-gradient";
 
 const TakeNoteScreen = () => {
     const router = useRouter();
     const [noteTitle, setNoteTitle] = useState<string>("");
     const [noteContent, setNoteContent] = useState<string>("");
+    const [noteTheme, setNoteTheme] = useState<[string, string]>([
+        "#143852",
+        "#ACACAC",
+    ]);
+    const [openModal, setOpenModal] = useState<boolean>(false);
 
     const handleContentChange = (text: string) => {
         setNoteContent(text);
@@ -38,9 +48,21 @@ const TakeNoteScreen = () => {
         setNoteContent("");
     };
 
+    const handleThemeModal = () => {
+        // Logic to change theme can be added here
+        setOpenModal(!openModal);
+        Keyboard.dismiss();
+    };
+
+    const handleThemeSelect = (theme: string[]) => {
+        setNoteTheme([theme[0], theme[1]]);
+        setOpenModal(false);
+        Keyboard.dismiss();
+    };
+
     return (
         <SafeAreaView>
-            <NoiseBackground />
+            <NoiseBackground theme={noteTheme} />
             <ScrollView className="h-full w-full">
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -92,7 +114,7 @@ const TakeNoteScreen = () => {
                             exiting={FadeOutUp.duration(400).delay(150)}
                             layout={LinearTransition.duration(400)}
                         >
-                            <TouchableOpacity onPress={() => router.back()}>
+                            <TouchableOpacity onPress={handleThemeModal}>
                                 <BlurView
                                     intensity={50}
                                     tint="dark"
@@ -170,6 +192,50 @@ const TakeNoteScreen = () => {
                     />
                 </View>
             </ScrollView>
+            {openModal && (
+                <Animated.View
+                    entering={FadeInDown.duration(400).delay(150)}
+                    exiting={FadeOutDown.duration(400).delay(150)}
+                    layout={LinearTransition.duration(400)}
+                    className="absolute bottom-0 right-0 left-0  bg-neutral-50 rounded-t-xl p-4"
+                >
+                    <View className="flex-row items-center justify-center absolute -top-5 left-0 right-0">
+                        <AntDesign name="minus" size={60} color="maroon" />
+                    </View>
+                    <FlatList
+                        data={[
+                            ["#143852", "#ACACAC"] as [string, string],
+                            ["#C890A7", "#A35C7A"] as [string, string],
+                            ["#97866A", "#735557"] as [string, string],
+                            ["#D3E671", "#89AC46"] as [string, string],
+                            ["#1F7D53", "#255F38"] as [string, string],
+                            ["#670D2F", "#3A0519"] as [string, string],
+                        ]}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity
+                                onPress={() => handleThemeSelect(item)}
+                                className="w-24 h-24 rounded-lg overflow-hidden"
+                            >
+                                <LinearGradient
+                                    colors={item}
+                                    start={[0, 0]}
+                                    end={[0, 1]}
+                                    className="w-24 h-24 bg-teal-500 rounded-md mt-5 overflow-hidden"
+                                ></LinearGradient>
+                            </TouchableOpacity>
+                        )}
+                        keyExtractor={(item, index) =>
+                            item.join("-") || index.toString()
+                        }
+                        horizontal
+                        className="w-full flex-1 mt-1 mb-3"
+                        ItemSeparatorComponent={() => (
+                            <View className="w-2"></View>
+                        )}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                </Animated.View>
+            )}
         </SafeAreaView>
     );
 };

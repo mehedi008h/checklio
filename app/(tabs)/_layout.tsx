@@ -22,6 +22,7 @@ export default function TabLayout() {
                 tabBarHideOnKeyboard: true,
                 tabBarActiveTintColor: "blue",
                 headerShown: false,
+
                 tabBarStyle: {
                     elevation: 0,
                     display: "flex",

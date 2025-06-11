@@ -7,8 +7,6 @@ import Animated, {
     FadeOutDown,
     LinearTransition,
 } from "react-native-reanimated";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { LinearGradient } from "expo-linear-gradient";
 import { useModalStore } from "@/store/useModalStore";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import ActionModal from "./ActionModal";
