@@ -6,6 +6,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { BlurView } from "expo-blur";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 export default function TabLayout() {
     const colorScheme = useColorScheme();
@@ -153,8 +154,8 @@ export default function TabLayout() {
                 }}
             />
 
-            {/* <Tabs.Screen
-                name="profile"
+            <Tabs.Screen
+                name="notes"
                 options={{
                     tabBarLabel: ({ focused }) => {
                         return (
@@ -165,20 +166,20 @@ export default function TabLayout() {
                                         : "text-neutral-600"
                                 } font-okra_400 text-sm font-normal`}
                             >
-                                Profile
+                                Note
                             </Text>
                         );
                     },
 
                     tabBarIcon: ({ focused }) => (
-                        <FontAwesome6
-                            name="circle-user"
+                        <FontAwesome
+                            name="sticky-note-o"
                             size={20}
                             color={focused ? "#115e59" : "#525252"}
                         />
                     ),
                 }}
-            /> */}
+            />
         </Tabs>
     );
 }

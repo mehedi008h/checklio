@@ -1,10 +1,10 @@
 import React from "react";
-import TaskHeader from "@/components/tasks/TaskHeader";
-import RecentTasks from "@/components/home/RecentTasks";
 import CustomSafeareaView from "@/components/common/CustomSafeAreaView";
 import NoiseBackground from "@/components/common/NoiseBackground";
+import NotesHeader from "@/components/notes/NotesHeader";
+import Notes from "@/components/notes/Notes";
 
-const TasksScreen = () => {
+const NotesScreen = () => {
     return (
         <CustomSafeareaView
             backgroundColor="transparent"
@@ -12,10 +12,10 @@ const TasksScreen = () => {
             classStyle="flex-1 bg-neutral-100"
         >
             <NoiseBackground />
-            <TaskHeader />
-            <RecentTasks />
+            <NotesHeader />
+            <Notes />
         </CustomSafeareaView>
     );
 };
 
-export default TasksScreen;
+export default NotesScreen;

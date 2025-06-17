@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import CustomSafeareaView from "@/components/common/CustomSafeAreaView";
 import HomeHeader from "@/components/home/HomeHeader";
@@ -13,21 +13,16 @@ import NoiseBackground from "@/components/common/NoiseBackground";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-import { Dimensions } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import Animated, {
-    FadeInDown,
     FadeInRight,
     FadeOutDown,
     LinearTransition,
 } from "react-native-reanimated";
-import RecentTasks from "@/components/home/RecentTasks";
 import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { times } from "lodash";
 import Task from "@/components/tasks/Task";
-import { useFocusEffect, useNavigation, useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import Note from "@/components/notes/Note";
 import { useModalStore } from "@/store/useModalStore";
 
@@ -56,7 +51,6 @@ const TaskType: React.FC<TaskTypeProps> = ({ title, selected, onPress }) => {
 const HomeScreen = () => {
     const router = useRouter();
     const [selected, setSelected] = useState<string>("All");
-    // const [openModal, setOpenModal] = useState<boolean>(false);
     const { openModal, setModalContent } = useModalStore();
 
     const handleSelected = (type: string) => {
@@ -74,18 +68,11 @@ const HomeScreen = () => {
             barStyle="light"
             classStyle="flex-1 bg-neutral-100"
         >
-            {/* <View className="absolute top-0 right-0 bottom-0 left-0">
-                <Image
-                    source={require("../../assets/images/todo_bg.png")}
-                    resizeMode="repeat"
-                    className="absolute top-0 left-0 bottom-0 right-0 w-full h-full"
-                />
-            </View> */}
-
             <NoiseBackground />
-            <HomeHeader />
+
             {/* <RecentTasks /> */}
             <ScrollView showsVerticalScrollIndicator={false}>
+                <HomeHeader />
                 <View className="flex-row my-5 gap-2 px-4 h-32">
                     <Animated.View
                         entering={FadeInRight.duration(400).delay(150)}
@@ -206,29 +193,6 @@ const HomeScreen = () => {
                         showsHorizontalScrollIndicator={false}
                     />
 
-                    {/* <View className="my-4 flex-row justify-between">
-                        <BlurView
-                            tint="dark"
-                            intensity={30}
-                            className="w-[48%] h-52 bg-neutral-400 overflow-hidden rounded-md "
-                        >
-                            <View className="w-full h-10 bg-orange-200/10"></View>
-                            <View className="w-full h-10 border-b border-orange-200/30"></View>
-                            <View className="w-full h-10 border-b border-orange-200/30"></View>
-                            <View className="w-full h-10 border-b border-orange-200/30"></View>
-
-                            <View className="absolute w-full h-full justify-center items-center">
-                                <Ionicons
-                                    name="create-outline"
-                                    size={70}
-                                    color="white"
-                                    className="opacity-5"
-                                />
-                            </View>
-                        </BlurView>
-                        
-                    </View> */}
-
                     <View className="flex-row justify-between items-center mt-4">
                         <Text className="text-lg font-bold font-okra_700 text-neutral-600">
                             Your Plan
@@ -270,56 +234,6 @@ const HomeScreen = () => {
                     <Task />
                 </View>
             </ScrollView>
-            {/* {openModal && (
-                <Animated.View
-                    entering={FadeInDown.duration(400).delay(150)}
-                    exiting={FadeOutDown.duration(400).delay(150)}
-                    layout={LinearTransition.duration(400)}
-                    className="absolute bottom-0 right-0 left-0 top-[75%] bg-neutral-300 rounded-t-xl p-4"
-                >
-                    <View className="flex-col items-center justify-between gap-3">
-                        <Ionicons
-                            name="information-circle"
-                            size={50}
-                            color="#991b1b"
-                        />
-                        <Text className="text-base font-okra_500 text-neutral-800">
-                            Are you sure you want to delete this task?
-                        </Text>
-                    </View>
-                    <View className="flex-row bg-ne items-center justify-between gap-2 absolute bottom-4 left-4 right-4">
-                        <TouchableOpacity
-                            onPress={() => setOpenModal(false)}
-                            className="flex-1"
-                        >
-                            <LinearGradient
-                                // Button Linear Gradient
-                                colors={["#a3a3a3", "#737373"]}
-                                start={[0, 0]}
-                                end={[0, 1]}
-                                className="w-full h-12 rounded-md justify-center items-center mt-4 overflow-hidden"
-                            >
-                                <Text className="text-white font-okra_500">
-                                    Cancle
-                                </Text>
-                            </LinearGradient>
-                        </TouchableOpacity>
-                        <TouchableOpacity className="flex-1">
-                            <LinearGradient
-                                // Button Linear Gradient
-                                colors={["#dc2626", "#ef4444"]}
-                                start={[0, 0]}
-                                end={[0, 1]}
-                                className="w-full h-12 rounded-md justify-center items-center mt-4 overflow-hidden"
-                            >
-                                <Text className="text-white font-okra_500">
-                                    Delete
-                                </Text>
-                            </LinearGradient>
-                        </TouchableOpacity>
-                    </View>
-                </Animated.View>
-            )} */}
         </CustomSafeareaView>
     );
 };

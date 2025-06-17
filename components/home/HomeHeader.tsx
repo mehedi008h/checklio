@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
@@ -17,14 +17,24 @@ const HomeHeader = () => {
             className="w-full min-h-fit pt-10 px-4"
         >
             <View className="flex flex-row justify-between items-center">
-                <View>
-                    <Text className="text-lg font-okra_500 text-neutral-300">
-                        Good Morning
-                    </Text>
-                    <Text className="text-2xl font-okra_500 text-neutral-100">
-                        Mehedi Hasan
-                    </Text>
+                <View className="flex flex-row items-center gap-2">
+                    <View className="h-12 w-12 rounded-full border-2 border-neutral-200 overflow-hidden">
+                        <Image
+                            source={require("../../assets/images/profile.jpg")}
+                            className=" w-full h-full rounded-full"
+                            resizeMode="stretch"
+                        />
+                    </View>
+                    <View>
+                        <Text className="text-lg font-okra_300 text-neutral-300">
+                            Mehedi, Good Morning
+                        </Text>
+                        <Text className="text-sm font-okra_300 text-neutral-100">
+                            Let's start your day
+                        </Text>
+                    </View>
                 </View>
+
                 <TouchableOpacity>
                     <BlurView
                         intensity={20}
